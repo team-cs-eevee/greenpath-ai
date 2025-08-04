@@ -5,14 +5,43 @@ const Home = () => {
     const [end, setEnd] = useState('')
     const [make, setMake] = useState('')
     const [model, setModel] = useState('')
-    
+    const [check, setCheck] = useState(false)
+
+    const handlerSubmit = async() => {
+         if (make === '' && model === '' && check === false) {
+            alert('Please fill both inputs OR check the box');
+        }
+        e.preventDefault();
+        try {
+            const response = await fetch('/api/userinfo', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({start, end, make, model})
+            })
+            const data = response.json()
+            console.log(data)
+            setStart('')
+            setEnd('')
+            setMake('')
+            setModel('')
+        } catch (error) {
+            console.log(error)
+        }
+    }
     return (
         <div id = 'home'>
-            <form id = 'home-form'>
-                <input type = 'text' id = 'home-start' placeholder = 'Start address...' />
-                <input type = 'text' id = 'home-end' placeholder = 'End address...' />
-                <input type = 'text' id = 'home-make' placeholder = 'Make...' />
-                <input type = 'text' id = 'home-model' placeholder = 'Model...' />
+            <form id = 'home-form' onSubmit = {handlerSubmit} >
+                <input type = 'text' id = 'home-start' required placeholder = 'Start address...' onChange = {(e) => setStart(e.target.value)}/>
+                <input type = 'text' id = 'home-end' required placeholder = 'End address...' onChange = {(e) => setEnd(e.target.value)}/>
+                <input type = 'text' id = 'home-make' placeholder = 'Make...' onChange = {(e) => setMake(e.target.value)}/>
+                <input type = 'text' id = 'home-model' placeholder = 'Model...' onChange = {(e) => setModel(e.target.value)}/>
+                <div id = 'home-checkbox'>
+                <input type = 'checkbox' id = 'home-checkbox' onChange = {(e) => setCheck(!check)} />
+                <p>I do not have a vehicle</p>
+                </div>
+                <button type = 'submit' id = 'home-submit'>Submit</button>
             </form>
         </div>
     )
