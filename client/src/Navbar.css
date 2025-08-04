@@ -1,0 +1,21 @@
+#navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100vw;
+    padding: 1rem;
+    border-bottom: 1px solid green;
+    border-radius: 1rem;
+    background-color: aquamarine;
+    color: green;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+}
+
+#navbar-logo-title {
+display: flex;
+}
+
+#navbar-links {
+display: flex;
+gap: 2rem;
+}
