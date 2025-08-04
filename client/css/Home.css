@@ -1,0 +1,45 @@
+#home {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#home-form {
+display: flex;
+gap: 1.5rem;
+background-color: pink;
+flex-direction: column;
+padding: 2rem;
+border: 1px solid black;
+border-radius: 1rem;
+width: 30rem;
+margin-top: 1rem;
+}
+
+#home-submit{
+width: 5rem;
+height: 2rem;
+margin-left: 11rem;
+border-radius: 1rem;
+border: 1px solid pink;
+margin-top: -1rem;
+}
+
+#home-form input {
+border-radius: 1rem;
+border: 1px solid palevioletred;
+padding: .5rem;
+}
+
+#home-checkbox {
+display: flex;
+align-items: center;
+justify-content: center;
+margin-top: -.5rem;
+}
+#home-checkbox p {
+margin-left: .25rem;
+color: white;
+margin-top: -.5rem;
+}
+
