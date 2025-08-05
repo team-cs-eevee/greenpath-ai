@@ -1,37 +1,66 @@
-import { useState } from "react"
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
-    const [username, setUsername] = useState('')
-    const [password, setPassword] = useState('')
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [message, setMessage] = useState('');
+  const navigate = useNavigate();
 
-        const handlerSubmit = async() => {
-        e.preventDefault();
-        try {
-            const response = await fetch('/api/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({username, password})
-            })
-            const data = await response.json()
-            console.log(data)
-            setUsername('')
-            setPassword('')
-        } catch (error) {
-            console.log(error)
-        }
+  const handlerSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch('/api/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, password }),
+      });
+      if (!response.ok) {
+        setMessage('Incorrect username or password');
+        throw new Error('login response failed');
+      }
+      const data = await response.json();
+      console.log(data);
+      setUsername('');
+      setPassword('');
+      navigate('/');
+    } catch (error) {
+      console.log(error);
     }
-    return (
-        <div id = 'login'>
-            <h1 id = 'login-title'>Login</h1>
-            <form id = 'login-form' onSubmit = {handlerSubmit}>
-                <input id = 'login-username' type = 'text' placeholder = 'Username...' onChange = {(e) => setUsername(e.target.value)}/>
-                <input id = 'login-password' type = 'password' placeholder = 'Password...' onChange = {(e) => setPassword(e.target.value)}/>
-                <button type = 'submit' id = 'login-submit'>Submit</button>
-            </form>
-        </div>
-    )
-}
+  };
+  return (
+    <div id='login'>
+      <h1 id='login-title'>Login</h1>
+      <form
+        id='login-form'
+        onSubmit={handlerSubmit}
+      >
+        <input
+          id='login-username'
+          type='text'
+          placeholder='Username...'
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
+        <input
+          id='login-password'
+          type='password'
+          placeholder='Password...'
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <div id='login-error'>{message}</div>
+        <button
+          type='submit'
+          id='login-submit'
+        >
+          Submit
+        </button>
+      </form>
+    </div>
+  );
+};
 
-export default Login
+export default Login;
