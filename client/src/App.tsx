@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Navbar from './Navbar.jsx';
 import Signup from './Signup.jsx';
