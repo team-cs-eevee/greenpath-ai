@@ -33,7 +33,7 @@ app.get('/', (req, res) => {
 
 app.post('/api/login', userController.verifyUser, (req, res) => {
   console.log('login called');
-  res.send('login');
+  res.status(200).send(res.locals.user);
 });
 
 app.post('/api/signup', userController.createUser, (req, res) => {
