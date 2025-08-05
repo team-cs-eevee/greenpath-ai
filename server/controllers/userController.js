@@ -50,13 +50,13 @@ userController.verifyUser = async (req, res, next) => {
     const user = await prisma.user.findUnique({ where: { username } });
 
     if (!user) {
-      return res.status(401).send('user does not exist');
+      return res.status(401).json('user does not exist');
     }
 
     const isCorrectPassword = await bcrypt.compare(password, user.password);
 
     if (!isCorrectPassword) {
-      return res.status(401).send('incorrect password');
+      return res.status(401).json('incorrect password');
     }
 
     res.locals.user = user;
