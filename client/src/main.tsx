@@ -6,6 +6,7 @@ import '/css/App.css'
 import '/css/Home.css'
 import '/css/Signup.css'
 import '/css/Login.css'
+import '/css/MapComponent.css'
 import App from './App.tsx'
 
 createRoot(document.getElementById('root')!).render(
