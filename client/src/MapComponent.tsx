@@ -1,5 +1,40 @@
-import React from 'react';
-import { APIProvider, Map } from '@vis.gl/react-google-maps';
+import { useEffect, useState } from 'react';
+import { APIProvider, Map, useMap, useMapsLibrary } from '@vis.gl/react-google-maps';
+
+const Directions = () => {
+  const map = useMap();
+  const routesLibrary = useMapsLibrary("routes");
+  const [directionsService, setDirectionsService] = useState<google.maps.DirectionsService | null>(null);
+  const [directionsRenderer, setDirectionsRenderer] = useState<google.maps.DirectionsRenderer | null>(null);
+
+  useEffect(() => {
+    if (!routesLibrary || !map) return;
+    setDirectionsService(new routesLibrary.DirectionsService());
+    setDirectionsRenderer(
+      new routesLibrary.DirectionsRenderer({
+        map
+      })
+    );
+  }, [routesLibrary, map]);
+
+  useEffect(() => {
+    if (!directionsService || !directionsRenderer) return;
+    directionsService
+      .route({
+        origin: "175 Willoughby St, Brooklyn NY",
+        destination: "500 College St, Toronto ON",
+        travelMode: window.google.maps.TravelMode.WALKING
+      })
+      .then((response: google.maps.DirectionsResult) => {
+        directionsRenderer?.setDirections(response);
+      });
+
+    // Cleanup to remove directions from the map if component unmounts
+    return () => directionsRenderer?.setMap(null);
+  }, [directionsService, directionsRenderer]);
+
+  return null; // UI for directions is optional, it's rendered on the map
+};
 
 const MapComponent = () => {
   return (
@@ -10,6 +45,7 @@ const MapComponent = () => {
         defaultZoom={12}
       >
         {/* Child components, like markers, can go here */}
+        <Directions />
       </Map>
     </APIProvider>
   );
