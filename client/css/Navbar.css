@@ -3,19 +3,43 @@
     align-items: center;
     justify-content: space-between;
     width: 100vw;
+    height: 4.5rem;
     padding: 1rem;
     border-bottom: 1px solid green;
     border-radius: 1rem;
     background-color: aquamarine;
     color: green;
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+    font-family: geneva;
 }
 
 #navbar-logo-title {
 display: flex;
+align-items: center;
 }
 
 #navbar-links {
 display: flex;
-gap: 2rem;
+gap: 1rem;
+}
+
+#navbar-links a{
+display: flex;
+text-decoration: none;
+color: green;
+padding: .5rem;
+border-radius: 1rem;
+cursor: pointer;
+}
+
+#navbar-links a:hover {
+background-color: white;
+border-radius: 1rem;
+box-shadow: 0 0 10px white;
+transition: all .75s ease-in-out
+}
+
+#navbar img {
+width: 5rem;
+height: 4rem;
+margin-top: .25rem;
 }

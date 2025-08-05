@@ -1,10 +1,15 @@
 import { useState, useEffect } from "react"
+import MapComponent from './MapComponent.tsx'
 
-const Home = ({ start, setStart, end, setEnd, travelMode, setTravelMode, setVehicleMpg }) => {
+const Home = () => {
     const [make, setMake] = useState('')
     const [model, setModel] = useState('')
     const [year, setYear] = useState('')
     const [check, setCheck] = useState(false)
+      const [start, setStart] = useState('');
+  const [end, setEnd] = useState('');
+  const [travelMode, setTravelMode] = useState('walking');
+  const [vehicleMpg, setVehicleMpg] = useState(null);
 
     // Function to fetch vehicle MPG from fuel economy API
     const fetchVehicleMpg = async (year, make, model) => {
@@ -133,6 +138,7 @@ const Home = ({ start, setStart, end, setEnd, travelMode, setTravelMode, setVehi
                     </select>
                     <button type = 'submit' id = 'home-submit'>Submit</button>
             </form>
+                  <MapComponent origin={start} destination={end} travelMode={travelMode} vehicleMpg={vehicleMpg} />
         </div>
     )
 }

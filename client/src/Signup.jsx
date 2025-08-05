@@ -3,7 +3,7 @@ const Signup = () => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
 
-       const handlerSubmit = async() => {
+       const handlerSubmit = async(e) => {
         e.preventDefault();
         try {
             const response = await fetch('/api/signup', {
