@@ -38,7 +38,7 @@ app.post('/api/login', userController.verifyUser, (req, res) => {
 
 app.post('/api/signup', userController.createUser, (req, res) => {
   console.log('signup called');
-  res.send('signup');
+  res.status(201).send(res.locals.newUser);
 });
 
 app.post('/api/userinfo', userInfoController.getMapRoute, (req, res) => {
