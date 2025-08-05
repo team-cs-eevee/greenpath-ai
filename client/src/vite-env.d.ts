@@ -9,6 +9,6 @@ interface ImportMeta {
 }
 
 declare module "*.jsx" {
-  const Component: React.ComponentType<any>;
+  const Component: React.ComponentType<Record<string, unknown>>;
   export default Component;
 }
