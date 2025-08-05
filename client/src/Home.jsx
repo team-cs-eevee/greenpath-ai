@@ -1,6 +1,8 @@
 import { useState } from "react"
-
-const Home = ({ start, setStart, end, setEnd }) => {
+import MapComponent from './MapComponent.tsx';
+const Home = () => {
+      const [start, setStart] = useState('');
+      const [end, setEnd] = useState('');
     const [make, setMake] = useState('')
     const [model, setModel] = useState('')
     const [check, setCheck] = useState(false)
@@ -42,12 +44,19 @@ const Home = ({ start, setStart, end, setEnd }) => {
                 }}/>
                 <input type = 'text' id = 'home-make' placeholder = 'Make...' onChange = {(e) => setMake(e.target.value)}/>
                 <input type = 'text' id = 'home-model' placeholder = 'Model...' onChange = {(e) => setModel(e.target.value)}/>
-                <div id = 'home-checkbox'>
-                <input type = 'checkbox' id = 'home-checkbox' onChange = {(e) => setCheck(!check)} />
-                <p>I do not have a vehicle</p>
-                </div>
-                <button type = 'submit' id = 'home-submit'>Submit</button>
+                    <div id = 'home-checkbox'>
+                    <input type = 'checkbox' id = 'home-checkbox' onChange = {(e) => setCheck(!check)} />
+                    <p>I do not have a vehicle</p>
+                    </div>
+                   <select id = 'home-dropdown'>
+                        <option value = 'walking'>walking</option>
+                        <option value = 'biking'>biking</option>
+                        <option value = 'driving'>driving</option>
+                        <option value = 'public-transportation'>public transportation</option>
+                    </select>
+                    <button type = 'submit' id = 'home-submit'>Submit</button>
             </form>
+            <MapComponent origin={start} destination={end} />
         </div>
     )
 }

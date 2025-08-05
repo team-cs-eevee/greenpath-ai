@@ -131,9 +131,10 @@ const MapComponent = ({ origin, destination }: MapComponentProps) => {
   console.log('🗺️ MapComponent render with props:', { origin, destination });
   
   return (
+    <div id = 'google-maps'>
     <APIProvider apiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}>
       <Map
-        style={{ width: '100%', height: '500px' }}
+        style={{ width: '30rem', height: '24rem'}}
         defaultCenter={{ lat: 40.7128, lng: -74.0060 }}
         defaultZoom={12}
       >
@@ -141,6 +142,7 @@ const MapComponent = ({ origin, destination }: MapComponentProps) => {
         <Directions origin={origin} destination={destination} />
       </Map>
     </APIProvider>
+    </div>
   );
 };
 
