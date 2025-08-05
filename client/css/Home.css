@@ -7,14 +7,15 @@
 #home-form {
 display: flex;
 gap: 1.5rem;
-background-color: pink;
+background-color: #7FFFD3;
 flex-direction: column;
 padding: 2rem;
-border: 1px solid black;
+border: 1px solid #7FFFD3;
 border-radius: 1rem;
 width: 30rem;
 margin-top: 7rem;
 margin-right: 3rem;
+box-shadow: 0 0 10px #7FFFD3;
 }
 
 #home-submit{
@@ -22,14 +23,37 @@ width: 5rem;
 height: 2rem;
 margin-left: 11rem;
 border-radius: 1rem;
-border: 1px solid pink;
-margin-top: -1rem;
+border: 1px solid black;
+background-color: black;
+margin-bottom: -1rem;
+color:#7FFFD3;
 }
+
+#home-submit:hover {
+transform: translateY(-.1rem);
+transition: all 1s;
+box-shadow: 0 0 10px black;
+}
+
 
 #home-form input {
 border-radius: 1rem;
-border: 1px solid palevioletred;
+border: 1px solid black;
 padding: .5rem;
+}
+
+#home-form input::placeholder {
+color: black;
+}
+
+#home-form input:hover {
+transform: translateY(-.1rem);
+box-shadow: 0 0 10px black;
+}
+
+#home-form select:hover {
+transform: translateY(-.1rem);
+box-shadow: 0 0 10px black;
 }
 
 #home-checkbox {
@@ -40,7 +64,7 @@ margin-top: -.5rem;
 }
 #home-checkbox p {
 margin-left: .25rem;
-color: white;
+color: black;
 margin-top: -.5rem;
 }
 
