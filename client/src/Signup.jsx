@@ -13,7 +13,7 @@ const Signup = () => {
                 },
                 body: JSON.stringify({username, password})
             })
-            const data = response.json()
+            const data = await response.json()
             console.log(data)
             setUsername('')
             setPassword('')
@@ -26,8 +26,8 @@ const Signup = () => {
             <h1 id = 'signup-title'>Sign Up</h1>
             <form id = 'signup-form' onSubmit = {handlerSubmit}>
                 <input id = 'signup-username' type = 'text' placeholder = 'Username...' onChange={(e) => setUsername(e.target.value)}/>
-                  <input id = 'signup-password' type = 'password' placeholder = 'Password...' onChange={(e) => setPassword(e.target.value)}/>
-                  <button type = 'submit' id = 'signup-submit'>Submit</button>
+                <input id = 'signup-password' type = 'password' placeholder = 'Password...' onChange={(e) => setPassword(e.target.value)}/>
+                <button type = 'submit' id = 'signup-submit'>Submit</button>
             </form>
         </div>
     )

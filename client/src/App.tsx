@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import {Routes, Route } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 import Navbar from './Navbar.jsx'
 import Signup from './Signup.jsx'
 import Login from './Login.jsx'
@@ -9,7 +9,7 @@ function App() {
 
   return (
     <div>
-      <Navbar />
+<Navbar />
 <Routes>
 <Route path = '/' element = {<Home />} />
 <Route path = '/login' element = {<Login />} />

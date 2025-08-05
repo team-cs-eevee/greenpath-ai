@@ -20,7 +20,7 @@ const Home = () => {
                 },
                 body: JSON.stringify({start, end, make, model})
             })
-            const data = response.json()
+            const data = await response.json()
             console.log(data)
             setStart('')
             setEnd('')
@@ -37,10 +37,10 @@ const Home = () => {
                 <input type = 'text' id = 'home-end' required placeholder = 'End address...' onChange = {(e) => setEnd(e.target.value)}/>
                 <input type = 'text' id = 'home-make' placeholder = 'Make...' onChange = {(e) => setMake(e.target.value)}/>
                 <input type = 'text' id = 'home-model' placeholder = 'Model...' onChange = {(e) => setModel(e.target.value)}/>
-                <div id = 'home-checkbox'>
-                <input type = 'checkbox' id = 'home-checkbox' onChange = {(e) => setCheck(!check)} />
-                <p>I do not have a vehicle</p>
-                </div>
+                    <div id = 'home-checkbox'>
+                    <input type = 'checkbox' id = 'home-checkbox' onChange = {(e) => setCheck(!check)} />
+                    <p>I do not have a vehicle</p>
+                    </div>
                 <button type = 'submit' id = 'home-submit'>Submit</button>
             </form>
         </div>
