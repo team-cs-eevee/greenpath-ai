@@ -1,25 +1,30 @@
 #signup {
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 #signup-title {
-color: pink;
+  color: pink;
 }
 
 #signup-form {
-display: flex;
-flex-direction: column;
-border: 1px solid black;
-padding: 3rem;
-background-color: pink;
-border-radius: 1rem;
-gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  padding: 3rem;
+  background-color: pink;
+  border-radius: 1rem;
+  gap: 1rem;
 }
 
 #signup-submit {
-width: 4rem;
-margin-left: 2.5rem;
+  width: 4rem;
+  margin-left: 2.5rem;
+}
+
+#signup-error {
+  width: 10rem;
+  text-align: center;
 }

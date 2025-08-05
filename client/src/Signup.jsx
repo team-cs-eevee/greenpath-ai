@@ -1,7 +1,10 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 const Signup = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [message, setMessage] = useState('');
+  const navigate = useNavigate();
 
   const handlerSubmit = async (e) => {
     e.preventDefault();
@@ -13,10 +16,19 @@ const Signup = () => {
         },
         body: JSON.stringify({ username, password }),
       });
+      console.log('STATUS', response.status);
+      if (response.status == '409') {
+        setMessage('Username already exists');
+        throw new Error('response failed');
+      } else if (response.status == '400') {
+        setMessage('You must include a username and password');
+        throw new Error('response failed');
+      }
       const data = await response.json();
       console.log(data);
       setUsername('');
       setPassword('');
+      navigate('/login');
     } catch (error) {
       console.log(error);
     }
@@ -42,6 +54,7 @@ const Signup = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
+        <div id='signup-error'>{message}</div>
         <button
           type='submit'
           id='signup-submit'
