@@ -1,4 +1,4 @@
-#signup {
+#signup{
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -6,25 +6,65 @@
 }
 
 #signup-title {
-  color: pink;
+  color:#7FFFD3;
+margin-top: 7rem;
+font-size: 4rem;
+margin-bottom: 1rem;
 }
 
 #signup-form {
-  display: flex;
-  flex-direction: column;
-  border: 1px solid black;
-  padding: 3rem;
-  background-color: pink;
-  border-radius: 1rem;
-  gap: 1rem;
+display: flex;
+gap: 1.5rem;
+background-color: black;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+padding: 2rem;
+border: 1px solid #7FFFD3;
+border-radius: 1rem;
+width: 25rem;
+height: 20rem;
+box-shadow: 0 0 10px #7FFFD3;
 }
 
-#signup-submit {
-  width: 4rem;
-  margin-left: 2.5rem;
+#signup-submit{
+width: 5rem;
+height: 2rem;
+border-radius: 1rem;
+border: 1px solid #7FFFD3;
+background-color: #7FFFD3;
+margin-bottom: -1rem;
+color:black;
+}
+
+#signup-submit:hover {
+transform: translateY(-.1rem);
+transition: all 1s;
+box-shadow: 0 0 10px #7FFFD3;
 }
 
 #signup-error {
   width: 10rem;
   text-align: center;
+}
+
+#signup-form input {
+border-radius: 1rem;
+border: 1px solid #7FFFD3;
+padding: .5rem;
+width: 15rem;
+background-color: #7FFFD3;
+}
+
+#signup-form input::placeholder {
+color: black;
+}
+
+#signup-form input:hover {
+transform: translateY(-.1rem);
+box-shadow: 0 0 10px #7FFFD3;
+}
+
+#signup-error {
+    color: white;
 }
