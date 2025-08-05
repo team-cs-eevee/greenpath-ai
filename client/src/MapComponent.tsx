@@ -11,6 +11,7 @@ const Directions = ({ origin, destination }: DirectionsProps) => {
   const routesLibrary = useMapsLibrary("routes");
   const [directionsService, setDirectionsService] = useState<google.maps.DirectionsService | null>(null);
   const [directionsRenderer, setDirectionsRenderer] = useState<google.maps.DirectionsRenderer | null>(null);
+  const [routeInfo, setRouteInfo] = useState<{distance: string; duration: string} | null>(null);
 
   useEffect(() => {
     if (!routesLibrary || !map) return;
@@ -41,7 +42,8 @@ const Directions = ({ origin, destination }: DirectionsProps) => {
     if (!origin || !destination) {
       console.log('❌ Missing origin/destination:', { origin, destination });
       // Clear existing directions when missing origin/destination
-      directionsRenderer.setDirections(null as any);
+      directionsRenderer.setDirections(null as google.maps.DirectionsResult | null);
+      setRouteInfo(null);
       return;
     }
 
@@ -64,8 +66,23 @@ const Directions = ({ origin, destination }: DirectionsProps) => {
           console.log('🛣️ Routes found:', response.routes.length);
           directionsRenderer?.setDirections(response);
           console.log('✅ Directions set on renderer');
+          
+          // Extract route distance and duration
+          const route = response.routes[0];
+          const leg = route.legs[0];
+          if (leg.distance && leg.duration) {
+            setRouteInfo({
+              distance: leg.distance.text,
+              duration: leg.duration.text
+            });
+            console.log('📏 Route info:', {
+              distance: leg.distance.text,
+              duration: leg.duration.text
+            });
+          }
         } else {
           console.log('❌ No routes found in response');
+          setRouteInfo(null);
         }
       })
       .catch((error) => {
@@ -82,7 +99,27 @@ const Directions = ({ origin, destination }: DirectionsProps) => {
     };
   }, [directionsRenderer]);
 
-  return null; // UI for directions is optional, it's rendered on the map
+  return (
+    <div style={{ 
+      position: 'absolute', 
+      top: '10px', 
+      right: '10px', 
+      background: 'white', 
+      padding: '10px', 
+      borderRadius: '5px',
+      boxShadow: '0 2px 10px rgba(0,0,0,0.1)',
+      zIndex: 1000
+    }}>
+      {routeInfo ? (
+        <div>
+          <div><strong>Distance:</strong> {routeInfo.distance}</div>
+          <div><strong>Duration:</strong> {routeInfo.duration}</div>
+        </div>
+      ) : (
+        <div>Enter start and end addresses</div>
+      )}
+    </div>
+  );
 };
 
 interface MapComponentProps {
