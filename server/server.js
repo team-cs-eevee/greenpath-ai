@@ -46,6 +46,47 @@ app.post('/api/userinfo', userInfoController.getMapRoute, (req, res) => {
   res.send('userinfo');
 });
 
+// User info route
+app.post('/api/userinfo', (req, res) => {
+  try {
+    const { start, end, make, model } = req.body;
+    
+    // Validate required fields
+    if (!start || !end) {
+      return res.status(400).json({ 
+        error: 'Missing required fields',
+        message: 'Start and end addresses are required'
+      });
+    }
+
+    // Log the received data
+    console.log('Received user info:', {
+      start,
+      end,
+      make: make || 'Not provided',
+      model: model || 'Not provided'
+    });
+
+    // TODO: Process route calculation, save to database, etc.
+    
+    res.status(200).json({ 
+      message: 'User info received successfully',
+      data: {
+        start,
+        end,
+        vehicle: make && model ? `${make} ${model}` : 'No vehicle specified',
+        timestamp: new Date().toISOString()
+      }
+    });
+  } catch (error) {
+    console.error('Error processing user info:', error);
+    res.status(500).json({ 
+      error: 'Failed to process user info',
+      message: error.message
+    });
+  }
+});
+
 // 404 handler
 app.use((req, res, next) => {
   res.status(404).json({

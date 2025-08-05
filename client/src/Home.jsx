@@ -1,17 +1,18 @@
 import { useState } from "react"
 
-const Home = () => {
-    const [start, setStart] = useState('')
-    const [end, setEnd] = useState('')
+const Home = ({ start, setStart, end, setEnd }) => {
     const [make, setMake] = useState('')
     const [model, setModel] = useState('')
     const [check, setCheck] = useState(false)
 
-    const handlerSubmit = async() => {
-         if (make === '' && model === '' && check === false) {
-            alert('Please fill both inputs OR check the box');
-        }
+    const handlerSubmit = async(e) => {
         e.preventDefault();
+        console.log('🏠 Form submitted with values:', { start, end, make, model });
+        
+        if (make === '' && model === '' && check === false) {
+            alert('Please fill both inputs OR check the box');
+            return;
+        }
         try {
             const response = await fetch('/api/userinfo', {
                 method: 'POST',
@@ -20,10 +21,8 @@ const Home = () => {
                 },
                 body: JSON.stringify({start, end, make, model})
             })
-            const data = response.json()
+            const data = await response.json()
             console.log(data)
-            setStart('')
-            setEnd('')
             setMake('')
             setModel('')
         } catch (error) {
@@ -33,8 +32,14 @@ const Home = () => {
     return (
         <div id = 'home'>
             <form id = 'home-form' onSubmit = {handlerSubmit} >
-                <input type = 'text' id = 'home-start' required placeholder = 'Start address...' onChange = {(e) => setStart(e.target.value)}/>
-                <input type = 'text' id = 'home-end' required placeholder = 'End address...' onChange = {(e) => setEnd(e.target.value)}/>
+                <input type = 'text' id = 'home-start' required placeholder = 'Start address...' value={start} onChange = {(e) => {
+                    console.log('🏠 Start address changed:', e.target.value);
+                    setStart(e.target.value);
+                }}/>
+                <input type = 'text' id = 'home-end' required placeholder = 'End address...' value={end} onChange = {(e) => {
+                    console.log('🏠 End address changed:', e.target.value);
+                    setEnd(e.target.value);
+                }}/>
                 <input type = 'text' id = 'home-make' placeholder = 'Make...' onChange = {(e) => setMake(e.target.value)}/>
                 <input type = 'text' id = 'home-model' placeholder = 'Model...' onChange = {(e) => setModel(e.target.value)}/>
                 <div id = 'home-checkbox'>
