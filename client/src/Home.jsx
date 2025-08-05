@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 import MapComponent from './MapComponent.tsx'
 
-const Home = () => {
+const Home = ({currentUser, setCurrentUser}) => {
     const [make, setMake] = useState('')
     const [model, setModel] = useState('')
     const [year, setYear] = useState('')

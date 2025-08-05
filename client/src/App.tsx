@@ -3,21 +3,45 @@ import Navbar from './Navbar.jsx';
 import Signup from './Signup.jsx';
 import Login from './Login.jsx';
 import Home from './Home.jsx';
-
+import { useState } from 'react';
 
 function App() {
   // const [start, setStart] = useState('');
   // const [end, setEnd] = useState('');
   // const [travelMode, setTravelMode] = useState('walking');
   // const [vehicleMpg, setVehicleMpg] = useState(null);
-
+  const [currentUser, setCurrentUser] = useState({});
   return (
     <div>
       <Navbar />
       <Routes>
-        <Route path="/" element={<Home  />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
+        <Route
+          path='/'
+          element={
+            <Home
+              currentUser={currentUser}
+              setCurrentUser={setCurrentUser}
+            />
+          }
+        />
+        <Route
+          path='/login'
+          element={
+            <Login
+              currentUser={currentUser}
+              setCurrentUser={setCurrentUser}
+            />
+          }
+        />
+        <Route
+          path='/signup'
+          element={
+            <Signup
+              currentUser={currentUser}
+              setCurrentUser={setCurrentUser}
+            />
+          }
+        />
       </Routes>
     </div>
   );
