@@ -3,7 +3,7 @@ const Navbar = () => {
     return (
         <div id = 'navbar'>
             <div id = 'navbar-logo-title'>
-            <img src = '/vite.svg' />
+            <img src = '/logo.png' />
             <h1>GreenPath</h1>
             </div>
             <div id = 'navbar-links'>
