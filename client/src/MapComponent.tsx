@@ -231,14 +231,16 @@ const MapComponent = ({ origin, destination, travelMode, vehicleMpg }: MapCompon
   return (
     <div id = 'google-maps'>
     <APIProvider apiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}>
+      <div id = 'google-maps-box'>
       <Map
-        style={{ width: '30rem', height: '28rem'}}
+        style={{ width: '30rem', height: '28rem', borderRadius: '1rem'}}
         defaultCenter={{ lat: 40.7128, lng: -74.0060 }}
         defaultZoom={12}
       >
         {/* Child components, like markers, can go here */}
         <Directions origin={origin} destination={destination} travelMode={travelMode} vehicleMpg={vehicleMpg} />
       </Map>
+      </div>
     </APIProvider>
     </div>
   );
