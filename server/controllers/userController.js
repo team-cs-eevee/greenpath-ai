@@ -1,6 +1,7 @@
 const userController = {};
 
 const prisma = require('../prisma');
+const bcrypt = require('bcryptjs');
 
 userController.createUser = async (req, res, next) => {
   try {
@@ -11,8 +12,11 @@ userController.createUser = async (req, res, next) => {
         .status(400)
         .json({ error: 'Username and password are required.' });
     }
+    const hashedPassword = await bcrypt.hash(password, 3);
 
-    const newUser = await prisma.user.create({ data: { username, password } });
+    const newUser = await prisma.user.create({
+      data: { username, password: hashedPassword },
+    });
     res.locals.newUser = newUser;
 
     return next();
@@ -48,9 +52,13 @@ userController.verifyUser = async (req, res, next) => {
     if (!user) {
       return res.status(401).send('user does not exist');
     }
-    if (user.password != password) {
+
+    const isCorrectPassword = await bcrypt.compare(password, user.password);
+
+    if (!isCorrectPassword) {
       return res.status(401).send('incorrect password');
     }
+
     res.locals.user = user;
     return next();
   } catch (e) {
