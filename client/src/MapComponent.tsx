@@ -97,7 +97,7 @@ const MapComponent = ({ origin, destination }: MapComponentProps) => {
     <div id = 'google-maps'>
     <APIProvider apiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}>
       <Map
-        style={{ width: '30rem', height: '30rem'}}
+        style={{ width: '30rem', height: '24rem'}}
         defaultCenter={{ lat: 40.7128, lng: -74.0060 }}
         defaultZoom={12}
       >

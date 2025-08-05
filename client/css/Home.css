@@ -43,3 +43,8 @@ color: white;
 margin-top: -.5rem;
 }
 
+#home-dropdown {
+    border-radius: 1rem;
+    height: 2rem;
+}
+
