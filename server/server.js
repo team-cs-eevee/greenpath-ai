@@ -41,22 +41,23 @@ app.post('/api/signup', userController.createUser, (req, res) => {
   res.status(201).send(res.locals.newUser);
 });
 
-app.post('/api/userinfo', userInfoController.getMapRoute, (req, res) => {
-  console.log('userinfo called');
-  res.send('userinfo');
-});
+// app.post('/api/userinfo', userInfoController.getMapRoute, (req, res) => {
+//   console.log('userinfo called');
+//   res.send('userinfo');
+// });
 
 app.post('/api/trips', tripsController.createTrip, (req, res) => {
   //add route
-})
+  res.status(201).json(res.locals.newTrip);
+});
 
-app.get('/api/trips',tripsController.getTrips, (req, res) => {
+app.get('/api/trips', tripsController.getTrips, (req, res) => {
   //return routes of given user
-})
+});
 
-app.delete('/api/trips/:id', tripsController.deleteTrips, (req, res) => {
+app.delete('/api/trips/:id', tripsController.deleteTrip, (req, res) => {
   //delete route with given id
-})
+});
 
 // User info route
 app.post('/api/userinfo', (req, res) => {
