@@ -46,6 +46,18 @@ app.post('/api/userinfo', userInfoController.getMapRoute, (req, res) => {
   res.send('userinfo');
 });
 
+app.post('/api/trips', tripsController.createTrip, (req, res) => {
+  //add route
+})
+
+app.get('/api/trips',tripsController.getTrips, (req, res) => {
+  //return routes of given user
+})
+
+app.delete('/api/trips/:id', tripsController.deleteTrips, (req, res) => {
+  //delete route with given id
+})
+
 // User info route
 app.post('/api/userinfo', (req, res) => {
   try {
