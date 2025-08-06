@@ -1,0 +1,28 @@
+#trips-title {
+    margin-top: 1rem;
+    color: #7FFFD3;
+    display: flex;
+    justify-content: center;
+}
+
+#trips-routes {
+    font-size: 1.5rem;
+    color: #7FFFD3;
+    display: flex;
+    justify-content: center;
+border: 1px solid black;
+background-color: black;
+width: 35rem;
+border-radius: 1rem;
+margin-top: 1rem;
+padding: 1rem;
+margin-left: 5rem;
+}
+
+#trips-routes p {
+
+}
+
+#trips-end {
+    margin-left: 1rem;
+}

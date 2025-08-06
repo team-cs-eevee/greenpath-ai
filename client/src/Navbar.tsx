@@ -29,7 +29,8 @@ const Navbar = ({ currentUser, onLogout }) => {
             
             <div id = 'navbar-links' className={isOpen ? 'mobile-open' : ''}>
             <Link to = '/' onClick={() => setIsOpen(false)}>Home</Link>
-            {!currentUser && <Link to = '/login' onClick={() => setIsOpen(false)}>Login</Link>}
+                <Link to = '/trips'>Trips</Link>
+        {!currentUser && <Link to = '/login' onClick={() => setIsOpen(false)}>Login</Link>}
             {!currentUser && <Link to = '/signup' onClick={() => setIsOpen(false)}>Sign Up</Link>}
             {currentUser && <button onClick={handleLogout}>Log Out</button>}
             </div>

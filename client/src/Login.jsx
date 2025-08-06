@@ -23,6 +23,7 @@ const Login = ({ currentUser, setCurrentUser }) => {
       }
       const currentUser = await response.json();
       setCurrentUser(currentUser);
+      setUserId(currentUser.id)
       console.log('User that just logged in: ', currentUser);
       setUsername('');
       setPassword('');
