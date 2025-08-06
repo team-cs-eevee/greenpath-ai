@@ -43,3 +43,61 @@ width: 5rem;
 height: 4rem;
 margin-top: .25rem;
 }
+
+/* Hamburger Menu */
+#hamburger {
+display: none;
+flex-direction: column;
+cursor: pointer;
+gap: 4px;
+}
+
+#hamburger span {
+width: 25px;
+height: 3px;
+background-color: green;
+transition: 0.3s;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+#navbar {
+    flex-wrap: wrap;
+    position: relative;
+}
+
+#hamburger {
+    display: flex;
+}
+
+#navbar-links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: aquamarine;
+    flex-direction: column;
+    padding: 1rem;
+    border-top: 1px solid green;
+    z-index: 1000;
+}
+
+#navbar-links.mobile-open {
+    display: flex;
+}
+
+#navbar-links a {
+    padding: 1rem;
+    border-bottom: 1px solid rgba(0,128,0,0.2);
+}
+
+#navbar img {
+    width: 3rem;
+    height: 2.5rem;
+}
+
+#navbar h1 {
+    font-size: 1.2rem;
+}
+}
