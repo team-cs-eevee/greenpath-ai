@@ -12,6 +12,7 @@ const Navbar = ({ currentUser, setCurrentUser }) => {
       {currentUser && <h2>Welcome {currentUser.username}</h2>}
       <div id='navbar-links'>
         <Link to='/'>Home</Link>
+            <Link to = '/trips'>Trips</Link>
         {!currentUser && <Link to='/login'>Login</Link>}
         {!currentUser && <Link to='/signup'>Sign Up</Link>}
         {currentUser && <button onClick={handleLogOut}>Log Out</button>}

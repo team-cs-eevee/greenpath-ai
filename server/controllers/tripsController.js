@@ -4,11 +4,9 @@ const prisma = require('../prisma');
 tripsController.getTrips = async (req, res, next) => {
   try {
     const userId = req.body.userId;
-
     if (!userId) {
       return res.status(400).json({ error: 'missing required userId' });
     }
-
     const trips = await prisma.trip.findMany({
       where: { userId: userId },
     });
@@ -27,6 +25,7 @@ tripsController.getTrips = async (req, res, next) => {
 tripsController.createTrip = async (req, res, next) => {
   // create route {start, end, userId}
   //send back newly created object
+  console.log("REQ BODY****", req.body);
   try {
     const { start, end, userId } = req.body;
 
