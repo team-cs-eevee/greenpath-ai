@@ -6,22 +6,25 @@
 
 generator client {
   provider = "prisma-client-js"
-  output = "../generated/prisma"
+  output   = "../generated/prisma"
 }
 
 datasource db {
   provider = "postgresql"
-  url = env("DATABASE_URL")
+  url      = env("DATABASE_URL")
 }
 
 model User {
-  id Int @id @default(autoincrement())
-  username String @unique
+  id       Int     @id @default(autoincrement())
+  username String  @unique
   password String
+  Trip    Trip[]
 }
 
-model Route { 
-  id Int @id @default(autoincrement()) 
-  start String 
-  end String 
+model Trip {
+  id     Int    @id @default(autoincrement())
+  start  String
+  end    String
+  userId Int
+  user   User   @relation(fields: [userId], references: [id])
 }
