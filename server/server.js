@@ -5,7 +5,7 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 const userController = require('./controllers/userController');
-const userInfoController = require('./controllers/userInfoController');
+const tripsController = require('./controllers/tripsController');
 
 // Middleware
 app.use(
@@ -50,12 +50,12 @@ app.post('/api/userinfo', userInfoController.getMapRoute, (req, res) => {
 app.post('/api/userinfo', (req, res) => {
   try {
     const { start, end, make, model } = req.body;
-    
+
     // Validate required fields
     if (!start || !end) {
-      return res.status(400).json({ 
+      return res.status(400).json({
         error: 'Missing required fields',
-        message: 'Start and end addresses are required'
+        message: 'Start and end addresses are required',
       });
     }
 
@@ -64,25 +64,25 @@ app.post('/api/userinfo', (req, res) => {
       start,
       end,
       make: make || 'Not provided',
-      model: model || 'Not provided'
+      model: model || 'Not provided',
     });
 
     // TODO: Process route calculation, save to database, etc.
-    
-    res.status(200).json({ 
+
+    res.status(200).json({
       message: 'User info received successfully',
       data: {
         start,
         end,
         vehicle: make && model ? `${make} ${model}` : 'No vehicle specified',
-        timestamp: new Date().toISOString()
-      }
+        timestamp: new Date().toISOString(),
+      },
     });
   } catch (error) {
     console.error('Error processing user info:', error);
-    res.status(500).json({ 
+    res.status(500).json({
       error: 'Failed to process user info',
-      message: error.message
+      message: error.message,
     });
   }
 });
