@@ -174,7 +174,7 @@ const Home = ({ currentUser, setCurrentUser }) => {
             id='home-checkbox'
             onChange={(e) => setCheck(!check)}
           />
-          <p>I do not have a vehicle {currentUser.username}</p>
+          <p>I do not have a vehicle</p>
         </div>
         <select
           id='home-dropdown'

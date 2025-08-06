@@ -10,7 +10,7 @@ function App() {
   // const [end, setEnd] = useState('');
   // const [travelMode, setTravelMode] = useState('walking');
   // const [vehicleMpg, setVehicleMpg] = useState(null);
-  const [currentUser, setCurrentUser] = useState({});
+  const [currentUser, setCurrentUser] = useState(null);
   return (
     <div>
       <Navbar
