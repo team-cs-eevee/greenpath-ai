@@ -3,6 +3,17 @@ const prisma = require('../prisma');
 
 tripsController.getTrips = async (req, res, next) => {
   try {
+    const userId = req.body.userId;
+
+    if (!userId) {
+      return res.status(400).json({ error: 'missing required userId' });
+    }
+
+    const trips = await prisma.trip.findMany({
+      where: { userId: userId },
+    });
+    console.log('trips: ', trips);
+    res.locals.trips = trips;
     return next();
   } catch (e) {
     return next({

@@ -53,6 +53,7 @@ app.post('/api/trips', tripsController.createTrip, (req, res) => {
 
 app.get('/api/trips', tripsController.getTrips, (req, res) => {
   //return routes of given user
+  res.status(200).json(res.locals.trips);
 });
 
 app.delete('/api/trips/:id', tripsController.deleteTrip, (req, res) => {
