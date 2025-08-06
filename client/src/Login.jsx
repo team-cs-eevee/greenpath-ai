@@ -21,8 +21,9 @@ const Login = ({ currentUser, setCurrentUser }) => {
         setMessage('Incorrect username or password');
         throw new Error('login response failed');
       }
-      const data = await response.json();
-      console.log(data);
+      const currentUser = await response.json();
+      setCurrentUser(currentUser);
+      console.log('User that just logged in: ', currentUser);
       setUsername('');
       setPassword('');
       navigate('/');

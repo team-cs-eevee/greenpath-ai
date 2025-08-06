@@ -1,5 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
-import Navbar from './Navbar.jsx';
+import Navbar from './Navbar.js';
 import Signup from './Signup.jsx';
 import Login from './Login.jsx';
 import Home from './Home.jsx';
@@ -13,7 +13,10 @@ function App() {
   const [currentUser, setCurrentUser] = useState({});
   return (
     <div>
-      <Navbar />
+      <Navbar
+        currentUser={currentUser}
+        setCurrentUser={setCurrentUser}
+      />
       <Routes>
         <Route
           path='/'

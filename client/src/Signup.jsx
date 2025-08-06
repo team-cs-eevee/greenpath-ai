@@ -24,8 +24,9 @@ const Signup = ({ currentUser, setCurrentUser }) => {
         setMessage('You must include a username and password');
         throw new Error('response failed');
       }
-      const data = await response.json();
-      console.log(data);
+      const newUser = await response.json();
+      setCurrentUser(newUser);
+      console.log('newUser', newUser);
       setUsername('');
       setPassword('');
       navigate('/');
