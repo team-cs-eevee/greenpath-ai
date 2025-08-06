@@ -117,9 +117,6 @@ if (!currentUser) {
       });
       const data = await response.json();
       console.log(data);
-      setMake('');
-      setModel('');
-      setYear('');
     } catch (error) {
       console.log(error);
     }

@@ -27,6 +27,7 @@ const Login = ({ currentUser, setCurrentUser, setUserId, userId }) => {
       console.log('User that just logged in: ', currentUser);
       setUsername('');
       setPassword('');
+      console.log('Redirecting to home page...');
       navigate('/');
     } catch (error) {
       console.log(error);

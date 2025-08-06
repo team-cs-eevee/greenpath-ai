@@ -7,7 +7,7 @@ tripsController.getTrips = async (req, res, next) => {
     if (!userId) {
       return res.status(400).json({ error: 'missing required userId' });
     }
-    const trips = await prisma.trip.findMany({
+    const trips = await prisma.Trip.findMany({
       where: { userId: userId },
     });
     console.log('trips: ', trips);
@@ -33,7 +33,38 @@ tripsController.createTrip = async (req, res, next) => {
       return res.status(400).json({ error: 'missing required field' });
     }
 
-    const newTrip = await prisma.trip.create({ data: { start, end, userId } });
+    // Normalize addresses for duplicate checking (lowercase and trim whitespace)
+    const normalizedStart = start.toLowerCase().trim();
+    const normalizedEnd = end.toLowerCase().trim();
+
+    // Check if this route already exists for this user
+    const existingTrip = await prisma.Trip.findFirst({
+      where: {
+        start: {
+          equals: normalizedStart,
+          mode: 'insensitive'
+        },
+        end: {
+          equals: normalizedEnd,
+          mode: 'insensitive'
+        },
+        userId: userId
+      }
+    });
+
+    if (existingTrip) {
+      // Return the existing trip instead of creating a duplicate
+      res.locals.newTrip = existingTrip;
+      return next();
+    }
+
+    const newTrip = await prisma.Trip.create({ 
+      data: { 
+        start: normalizedStart, 
+        end: normalizedEnd, 
+        userId 
+      } 
+    });
     res.locals.newTrip = newTrip;
     return next();
   } catch (e) {
@@ -51,7 +82,7 @@ tripsController.deleteTrip = async (req, res, next) => {
     if (!id) {
       return res.status(400).json({ error: 'missing required id' });
     }
-    const deletedTrip = await prisma.trip.delete({ where: { id: id } });
+    const deletedTrip = await prisma.Trip.delete({ where: { id: id } });
     console.log('deletedTrip', deletedTrip);
     res.locals.deletedTrip = deletedTrip;
 
