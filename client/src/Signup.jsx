@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-const Signup = () => {
+const Signup = ({ currentUser, setCurrentUser }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
@@ -24,8 +24,9 @@ const Signup = () => {
         setMessage('You must include a username and password');
         throw new Error('response failed');
       }
-      const data = await response.json();
-      console.log(data);
+      const newUser = await response.json();
+      setCurrentUser(newUser);
+      console.log('newUser', newUser);
       setUsername('');
       setPassword('');
       navigate('/');

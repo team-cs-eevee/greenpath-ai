@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const Login = () => {
+const Login = ({ currentUser, setCurrentUser }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
@@ -21,8 +21,9 @@ const Login = () => {
         setMessage('Incorrect username or password');
         throw new Error('login response failed');
       }
-      const data = await response.json();
-      console.log(data);
+      const currentUser = await response.json();
+      setCurrentUser(currentUser);
+      console.log('User that just logged in: ', currentUser);
       setUsername('');
       setPassword('');
       navigate('/');
