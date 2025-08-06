@@ -51,7 +51,7 @@ app.post('/api/trips', tripsController.createTrip, (req, res) => {
   res.status(201).json(res.locals.newTrip);
 });
 
-app.get('/api/trips', tripsController.getTrips, (req, res) => {
+app.post('/api/gettrips', tripsController.getTrips, (req, res) => {
   //return routes of given user
   res.status(200).json(res.locals.trips);
 });
