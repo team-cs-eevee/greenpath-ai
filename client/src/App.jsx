@@ -4,6 +4,7 @@ import Signup from './Signup.jsx';
 import Login from './Login.jsx';
 import Home from './Home.jsx';
 import { useState } from 'react';
+import Trips from './Trips.tsx'
 
 function App() {
   // const [start, setStart] = useState('');
@@ -11,6 +12,9 @@ function App() {
   // const [travelMode, setTravelMode] = useState('walking');
   // const [vehicleMpg, setVehicleMpg] = useState(null);
   const [currentUser, setCurrentUser] = useState(null);
+  const [userId, setUserId] = useState(null);
+    const [start, setStart] = useState('');
+  const [end, setEnd] = useState('');
   return (
     <div>
       <Navbar
@@ -24,15 +28,31 @@ function App() {
             <Home
               currentUser={currentUser}
               setCurrentUser={setCurrentUser}
+               setUserId = {setUserId}
+              userId = {userId}
+              start = {start}
+              setStart = {setStart}
+              end = {end}
+              setEnd = {setEnd}
             />
           }
         />
+             <Route path = '/trips' element ={<Trips 
+             setUserId = {setUserId}
+              userId = {userId}
+              start = {start}
+              setStart = {setStart}
+              end = {end}
+              setEnd = {setEnd}
+              />} />
         <Route
           path='/login'
           element={
             <Login
               currentUser={currentUser}
               setCurrentUser={setCurrentUser}
+              setUserId = {setUserId}
+              userId = {userId}
             />
           }
         />
@@ -42,6 +62,8 @@ function App() {
             <Signup
               currentUser={currentUser}
               setCurrentUser={setCurrentUser}
+              setUserId = {setUserId}
+              userId = {userId}
             />
           }
         />

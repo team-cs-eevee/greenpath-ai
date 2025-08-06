@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-const Signup = ({ currentUser, setCurrentUser }) => {
+const Signup = ({ currentUser, setCurrentUser, setUserId, userId }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
@@ -26,6 +26,7 @@ const Signup = ({ currentUser, setCurrentUser }) => {
       }
       const newUser = await response.json();
       setCurrentUser(newUser);
+      setUserId(newUser.id)
       console.log('newUser', newUser);
       setUsername('');
       setPassword('');

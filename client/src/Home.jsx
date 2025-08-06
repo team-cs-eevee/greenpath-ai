@@ -1,13 +1,11 @@
 import { useState, useEffect } from 'react';
 import MapComponent from './MapComponent.tsx';
 
-const Home = ({ currentUser, setCurrentUser }) => {
+const Home = ({ currentUser, setCurrentUser, setUserId, userId, start, setStart, end, setEnd}) => {
   const [make, setMake] = useState('');
   const [model, setModel] = useState('');
   const [year, setYear] = useState('');
   const [check, setCheck] = useState(false);
-  const [start, setStart] = useState('');
-  const [end, setEnd] = useState('');
   const [travelMode, setTravelMode] = useState('walking');
   const [vehicleMpg, setVehicleMpg] = useState(null);
 
@@ -106,12 +104,12 @@ const Home = ({ currentUser, setCurrentUser }) => {
       return;
     }
     try {
-      const response = await fetch('/api/userinfo', {
+      const response = await fetch('/api/trips', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ start, end, make, model, year }),
+        body: JSON.stringify({ start, end, userId}),
       });
       const data = await response.json();
       console.log(data);
