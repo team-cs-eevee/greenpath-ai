@@ -5,7 +5,7 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 const userController = require('./controllers/userController');
-const userInfoController = require('./controllers/userInfoController');
+const tripsController = require('./controllers/tripsController');
 
 // Middleware
 app.use(
@@ -41,21 +41,36 @@ app.post('/api/signup', userController.createUser, (req, res) => {
   res.status(201).send(res.locals.newUser);
 });
 
-app.post('/api/userinfo', userInfoController.getMapRoute, (req, res) => {
-  console.log('userinfo called');
-  res.send('userinfo');
+// app.post('/api/userinfo', userInfoController.getMapRoute, (req, res) => {
+//   console.log('userinfo called');
+//   res.send('userinfo');
+// });
+
+app.post('/api/trips', tripsController.createTrip, (req, res) => {
+  //add route
+  res.status(201).json(res.locals.newTrip);
+});
+
+app.get('/api/trips', tripsController.getTrips, (req, res) => {
+  //return routes of given user
+  res.status(200).json(res.locals.trips);
+});
+
+app.delete('/api/trips/:id', tripsController.deleteTrip, (req, res) => {
+  //delete route with given id
+  res.status(200).json(res.locals.deletedTrip);
 });
 
 // User info route
 app.post('/api/userinfo', (req, res) => {
   try {
     const { start, end, make, model } = req.body;
-    
+
     // Validate required fields
     if (!start || !end) {
-      return res.status(400).json({ 
+      return res.status(400).json({
         error: 'Missing required fields',
-        message: 'Start and end addresses are required'
+        message: 'Start and end addresses are required',
       });
     }
 
@@ -64,25 +79,25 @@ app.post('/api/userinfo', (req, res) => {
       start,
       end,
       make: make || 'Not provided',
-      model: model || 'Not provided'
+      model: model || 'Not provided',
     });
 
     // TODO: Process route calculation, save to database, etc.
-    
-    res.status(200).json({ 
+
+    res.status(200).json({
       message: 'User info received successfully',
       data: {
         start,
         end,
         vehicle: make && model ? `${make} ${model}` : 'No vehicle specified',
-        timestamp: new Date().toISOString()
-      }
+        timestamp: new Date().toISOString(),
+      },
     });
   } catch (error) {
     console.error('Error processing user info:', error);
-    res.status(500).json({ 
+    res.status(500).json({
       error: 'Failed to process user info',
-      message: error.message
+      message: error.message,
     });
   }
 });
