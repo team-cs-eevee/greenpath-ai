@@ -99,6 +99,10 @@ const Home = ({ currentUser, setCurrentUser, setUserId, userId, start, setStart,
       year,
     });
 
+if (!currentUser) {
+      alert('Please log in');
+    }
+
     if (make === '' && model === '' && year === '' && check === false) {
       alert('Please fill vehicle information OR check the box');
       return;
