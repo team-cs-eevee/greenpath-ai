@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const Login = ({ currentUser, setCurrentUser }) => {
+const Login = ({ currentUser, setCurrentUser, setUserId }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
@@ -27,6 +27,7 @@ const Login = ({ currentUser, setCurrentUser }) => {
       console.log('User that just logged in: ', currentUser);
       setUsername('');
       setPassword('');
+      console.log('Redirecting to home page...');
       navigate('/');
     } catch (error) {
       console.log(error);

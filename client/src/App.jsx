@@ -15,6 +15,7 @@ function App() {
 
   const handleLogout = () => {
     setCurrentUser(null);
+    setUserId(null);
   };
 
   const [userId, setUserId] = useState(null);

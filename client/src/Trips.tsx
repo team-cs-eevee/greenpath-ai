@@ -4,8 +4,10 @@ const Trips = ({setUserId, userId, start, setStart, end, setEnd}) => {
 const [userTrips, setUserTrips] = useState([])
 
 useEffect(() => {
-    getTrips()
-}, [])
+    if (userId) {
+        getTrips()
+    }
+}, [userId])
 
 const getTrips = async() => {
     try {
