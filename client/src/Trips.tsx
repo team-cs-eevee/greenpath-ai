@@ -29,7 +29,7 @@ console.log(error)
     }
 }
     return (
-        <div>
+        <div id = 'trips'>
     <h1 id = 'trips-title'>Previous Routes</h1>
     {userTrips.map((value, index) => (
         <div id = 'trips-routes' key = {index}>
