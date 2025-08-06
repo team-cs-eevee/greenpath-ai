@@ -1,5 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
-import Navbar from './Navbar.js';
+import Navbar from './Navbar.tsx';
 import Signup from './Signup.jsx';
 import Login from './Login.jsx';
 import Home from './Home.jsx';
@@ -11,11 +11,16 @@ function App() {
   // const [travelMode, setTravelMode] = useState('walking');
   // const [vehicleMpg, setVehicleMpg] = useState(null);
   const [currentUser, setCurrentUser] = useState(null);
+
+  const handleLogout = () => {
+    setCurrentUser(null);
+  };
+
   return (
     <div>
       <Navbar
         currentUser={currentUser}
-        setCurrentUser={setCurrentUser}
+        onLogout={handleLogout}
       />
       <Routes>
         <Route

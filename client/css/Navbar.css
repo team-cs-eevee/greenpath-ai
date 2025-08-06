@@ -22,7 +22,7 @@ display: flex;
 gap: 1rem;
 }
 
-#navbar-links a{
+#navbar-links a, #navbar-links button{
 display: flex;
 text-decoration: none;
 color: green;
@@ -31,7 +31,14 @@ border-radius: 1rem;
 cursor: pointer;
 }
 
-#navbar-links a:hover {
+#navbar-links button {
+background: none;
+border: none;
+font-family: geneva;
+font-size: inherit;
+}
+
+#navbar-links a:hover, #navbar-links button:hover {
 background-color: white;
 border-radius: 1rem;
 box-shadow: 0 0 10px white;
@@ -87,9 +94,20 @@ transition: 0.3s;
     display: flex;
 }
 
-#navbar-links a {
+#navbar-links a, #navbar-links button {
     padding: 1rem;
     border-bottom: 1px solid rgba(0,128,0,0.2);
+}
+
+#navbar-links button {
+    background: none;
+    border: none;
+    color: green;
+    font-family: geneva;
+    font-size: inherit;
+    cursor: pointer;
+    width: auto;
+    text-align: left;
 }
 
 #navbar img {
