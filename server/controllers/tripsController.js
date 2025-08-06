@@ -48,6 +48,14 @@ tripsController.createTrip = async (req, res, next) => {
 
 tripsController.deleteTrip = async (req, res, next) => {
   try {
+    const id = Number(req.params.id);
+    if (!id) {
+      return res.status(400).json({ error: 'missing required id' });
+    }
+    const deletedTrip = await prisma.trip.delete({ where: { id: id } });
+    console.log('deletedTrip', deletedTrip);
+    res.locals.deletedTrip = deletedTrip;
+
     return next();
   } catch (e) {
     return next({

@@ -58,6 +58,7 @@ app.get('/api/trips', tripsController.getTrips, (req, res) => {
 
 app.delete('/api/trips/:id', tripsController.deleteTrip, (req, res) => {
   //delete route with given id
+  res.status(200).json(res.locals.deletedTrip);
 });
 
 // User info route
